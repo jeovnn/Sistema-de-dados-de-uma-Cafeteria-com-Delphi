@@ -10,7 +10,7 @@ uses
 type
   TForm1 = class(TForm)
     PanelPrincipal: TPanel;
-    DBGrid1: TDBGrid;
+    DBGridCardapio: TDBGrid;
     MainMenu1: TMainMenu;
     Cadastrar1: TMenuItem;
     Cadastrar2: TMenuItem;
@@ -22,6 +22,7 @@ type
     ButtonSelecionar: TButton;
     procedure ButtonSelecionarClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,6 +46,16 @@ procedure TForm1.ButtonSelecionarClick(Sender: TObject);
 begin
 dbgridatendentes.visible:= true;
 buttonselecionar.visible:= true;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  with DataModule1.FDQuerycardapio do
+  begin
+    Close;
+    SQL.Text := 'SELECT * from cardapio';
+    Open;
+  end;
 end;
 
 end.

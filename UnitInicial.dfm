@@ -11,6 +11,7 @@ object Form1: TForm1
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
+  OnShow = FormShow
   TextHeight = 15
   object PanelPrincipal: TPanel
     Left = 0
@@ -19,8 +20,9 @@ object Form1: TForm1
     Height = 588
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 40
-    ExplicitTop = -16
+    DesignSize = (
+      804
+      588)
     object Label1: TLabel
       Left = 465
       Top = 18
@@ -34,11 +36,12 @@ object Form1: TForm1
       Width = 3
       Height = 15
     end
-    object DBGrid1: TDBGrid
+    object DBGridCardapio: TDBGrid
       Left = 16
       Top = 224
       Width = 769
       Height = 336
+      Anchors = [akLeft, akTop, akRight, akBottom]
       DataSource = DataModule1.DataSourceCardapio
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET

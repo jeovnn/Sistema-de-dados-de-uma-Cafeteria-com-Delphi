@@ -3,7 +3,10 @@ object DataModule1: TDataModule1
   Width = 291
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'DriverID=PG')
+      'Database=C:\Users\jeova\Bancos\COFFEELOG.FDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'DriverID=FB')
     Left = 56
     Top = 32
   end
