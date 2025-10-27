@@ -10,6 +10,7 @@ object Form2: TForm2
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -18,7 +19,6 @@ object Form2: TForm2
     Height = 653
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 8
     object Label1: TLabel
       Left = 40
       Top = 120
@@ -65,6 +65,7 @@ object Form2: TForm2
       Top = 336
       Width = 753
       Height = 265
+      DataSource = DataModule1.DataSourceCliente
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
@@ -79,30 +80,34 @@ object Form2: TForm2
       Height = 25
       Caption = 'Novo'
       TabOrder = 1
+      OnClick = Button1Click
     end
     object Button2: TButton
       Left = 137
       Top = 288
       Width = 75
       Height = 25
-      Caption = 'Inserir'
+      Caption = 'Excluir'
       TabOrder = 2
+      OnClick = Button2Click
     end
-    object Button3: TButton
+    object ButtonCancelar: TButton
       Left = 232
       Top = 288
       Width = 75
       Height = 25
-      Caption = 'Deletar'
+      Caption = 'Cancelar'
       TabOrder = 3
+      OnClick = ButtonCancelarClick
     end
-    object Button4: TButton
+    object ButtonSalvar: TButton
       Left = 329
       Top = 288
       Width = 75
       Height = 25
       Caption = 'Salvar'
       TabOrder = 4
+      OnClick = ButtonSalvarClick
     end
     object EditNome: TEdit
       Left = 40
@@ -111,7 +116,7 @@ object Form2: TForm2
       Height = 23
       TabOrder = 5
     end
-    object EditEndereco: TEdit
+    object EditTelefone: TEdit
       Left = 40
       Top = 191
       Width = 241
@@ -125,7 +130,7 @@ object Form2: TForm2
       Height = 23
       TabOrder = 7
     end
-    object Edit1: TEdit
+    object EditEMail: TEdit
       Left = 40
       Top = 247
       Width = 241

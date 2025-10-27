@@ -32,6 +32,7 @@ type
     Label9: TLabel;
     Edit5: TEdit;
     DateTimePicker1: TDateTimePicker;
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -44,5 +45,15 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TForm3.FormShow(Sender: TObject);
+begin
+  with DataModule1.FDQuerypedido do
+  begin
+    Close;
+    SQL.Text := 'SELECT * from pedido';
+    Open;
+  end;
+end;
 
 end.
