@@ -1,9 +1,12 @@
 object DataModule1: TDataModule1
-  Height = 490
-  Width = 291
+  Height = 551
+  Width = 1057
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'DriverID=PG')
+      'Database=COFFEELOG.FDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'DriverID=FB')
     Left = 56
     Top = 32
   end
@@ -13,12 +16,12 @@ object DataModule1: TDataModule1
     Top = 104
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
-    Left = 152
-    Top = 32
+    Left = 192
+    Top = 24
   end
   object DataSourceCliente: TDataSource
     DataSet = FDQueryCliente
-    Left = 152
+    Left = 192
     Top = 104
   end
   object FDQueryPedido: TFDQuery
@@ -28,7 +31,7 @@ object DataModule1: TDataModule1
   end
   object DataSourcePedido: TDataSource
     DataSet = FDQueryPedido
-    Left = 152
+    Left = 184
     Top = 160
   end
   object FDQueryAtendente: TFDQuery
@@ -38,7 +41,7 @@ object DataModule1: TDataModule1
   end
   object DataSourceAtendente: TDataSource
     DataSet = FDQueryAtendente
-    Left = 152
+    Left = 200
     Top = 216
   end
   object FDQueryCardapio: TFDQuery
@@ -48,7 +51,7 @@ object DataModule1: TDataModule1
   end
   object DataSourceCardapio: TDataSource
     DataSet = FDQueryCardapio
-    Left = 152
+    Left = 192
     Top = 272
   end
   object FDQueryPagamento: TFDQuery
@@ -58,7 +61,7 @@ object DataModule1: TDataModule1
   end
   object DataSourcePagamento: TDataSource
     DataSet = FDQueryPagamento
-    Left = 152
+    Left = 192
     Top = 328
   end
 end
