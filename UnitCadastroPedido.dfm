@@ -10,6 +10,7 @@ object Form3: TForm3
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -18,7 +19,6 @@ object Form3: TForm3
     Height = 650
     Align = alClient
     TabOrder = 0
-    ExplicitWidth = 849
     object Label2: TLabel
       Left = 40
       Top = 24

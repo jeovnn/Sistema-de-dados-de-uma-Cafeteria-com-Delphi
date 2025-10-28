@@ -3,7 +3,11 @@ object DataModule1: TDataModule1
   Width = 1057
   object FDConnection1: TFDConnection
     Params.Strings = (
+<<<<<<< HEAD
       'Database=COFFEELOG.FDB'
+=======
+      'Database=C:\Users\jeova\Bancos\COFFEELOG.FDB'
+>>>>>>> b0d87e456e7b661f6be16cc4b39f023220bf99f0
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=FB')
@@ -11,6 +15,7 @@ object DataModule1: TDataModule1
     Top = 32
   end
   object FDQueryCliente: TFDQuery
+    CachedUpdates = True
     Connection = FDConnection1
     Left = 56
     Top = 104
