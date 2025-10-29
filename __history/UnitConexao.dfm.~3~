@@ -1,0 +1,67 @@
+object DataModule1: TDataModule1
+  Height = 490
+  Width = 291
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=C:\Users\jeova\Bancos\COFFEELOG.FDB'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'DriverID=FB')
+    Left = 56
+    Top = 32
+  end
+  object FDQueryCliente: TFDQuery
+    Connection = FDConnection1
+    Left = 56
+    Top = 104
+  end
+  object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+    Left = 152
+    Top = 32
+  end
+  object DataSourceCliente: TDataSource
+    DataSet = FDQueryCliente
+    Left = 152
+    Top = 104
+  end
+  object FDQueryPedido: TFDQuery
+    Connection = FDConnection1
+    Left = 56
+    Top = 160
+  end
+  object DataSourcePedido: TDataSource
+    DataSet = FDQueryPedido
+    Left = 152
+    Top = 160
+  end
+  object FDQueryAtendente: TFDQuery
+    Connection = FDConnection1
+    Left = 56
+    Top = 216
+  end
+  object DataSourceAtendente: TDataSource
+    DataSet = FDQueryAtendente
+    Left = 152
+    Top = 216
+  end
+  object FDQueryCardapio: TFDQuery
+    Connection = FDConnection1
+    Left = 56
+    Top = 272
+  end
+  object DataSourceCardapio: TDataSource
+    DataSet = FDQueryCardapio
+    Left = 152
+    Top = 272
+  end
+  object FDQueryPagamento: TFDQuery
+    Connection = FDConnection1
+    Left = 56
+    Top = 328
+  end
+  object DataSourcePagamento: TDataSource
+    DataSet = FDQueryPagamento
+    Left = 152
+    Top = 328
+  end
+end

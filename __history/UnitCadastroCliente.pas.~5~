@@ -1,0 +1,51 @@
+unit UnitCadastroCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.StdCtrls,unitconexao;
+
+type
+  TForm2 = class(TForm)
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    Button1: TButton;
+    Button2: TButton;
+    Button3: TButton;
+    Button4: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    EditNome: TEdit;
+    EditEndereco: TEdit;
+    EditIdCliente: TEdit;
+    Label4: TLabel;
+    Edit1: TEdit;
+    Label5: TLabel;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.FormShow(Sender: TObject);
+begin
+  with DataModule1.FDQuerycliente do
+  begin
+    Close;
+    SQL.Text := 'SELECT * from cliente';
+    Open;
+  end;
+end;
+
+end.

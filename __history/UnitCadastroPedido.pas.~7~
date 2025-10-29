@@ -1,0 +1,162 @@
+unit UnitCadastroPedido;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Data.DB, Vcl.Grids, Vcl.DBGrids, Vcl.ComCtrls, FireDAC.Comp.Client,
+  FireDAC.Stan.Param, UnitConexao;
+
+type
+  TForm3 = class(TForm)
+    Panel1: TPanel;
+    Label2: TLabel;
+    DBGrid1: TDBGrid;
+    Label4: TLabel;
+    EditIdCliente: TEdit;
+    Label1: TLabel;
+    EditNome: TEdit;
+    EditAtendente: TEdit;
+    EditItem: TEdit;
+    Label5: TLabel;
+    Label3: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    EditHorario: TEdit;
+    Label8: TLabel;
+    EditObservacao: TEdit;
+    Label9: TLabel;
+    EditTotal: TEdit;
+    DateTimePicker1: TDateTimePicker;
+    ButtonNovo: TButton;
+    ButtonExcluir: TButton;
+    ButtonCancelar: TButton;
+    ButtonSalvar: TButton;
+    DBGridMostrarCliente: TDBGrid;
+    LabelCliente: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
+    procedure ButtonNovoClick(Sender: TObject);
+    procedure ButtonSalvarClick(Sender: TObject);
+    procedure ButtonExcluirClick(Sender: TObject);
+    procedure ButtonCancelarClick(Sender: TObject);
+  private
+    procedure LimparCampos;
+  public
+  end;
+
+var
+  Form3: TForm3;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm3.LimparCampos;
+begin
+  EditIdCliente.Clear;
+  EditAtendente.Clear;
+  EditItem.Clear;
+  EditHorario.Clear;
+  EditObservacao.Clear;
+  EditTotal.Clear;
+  DateTimePicker1.Date := Now;
+end;
+
+procedure TForm3.ButtonNovoClick(Sender: TObject);
+var
+  QTemp: TFDQuery;
+  ProxID: Integer;
+begin
+  LimparCampos;
+  QTemp := TFDQuery.Create(nil);
+  try
+    QTemp.Connection := DataModule1.FDConnection1;
+    QTemp.SQL.Text := 'SELECT COALESCE(MAX(ID_PEDIDO), 0) + 1 AS PROXIMO FROM PEDIDO';
+    QTemp.Open;
+    ProxID := QTemp.FieldByName('PROXIMO').AsInteger;
+  finally
+    QTemp.Free;
+  end;
+  DataModule1.FDQueryPedido.Append;
+  DataModule1.FDQueryPedido.FieldByName('ID_PEDIDO').AsInteger := ProxID;
+  EditHorario.Text := FormatDateTime('hh:nn', Now);
+end;
+
+procedure TForm3.ButtonSalvarClick(Sender: TObject);
+begin
+  with DataModule1.FDQueryPedido do
+  begin
+    if not (State in [dsInsert, dsEdit]) then
+      Append;
+    FieldByName('ID_CLIENTE').AsInteger   := StrToIntDef(EditIdCliente.Text, 0);
+    FieldByName('ID_ATENDENTE').AsInteger := StrToIntDef(EditAtendente.Text, 0);
+    FieldByName('OBSERVACAO').AsString    := EditObservacao.Text;
+    FieldByName('TOTAL').AsFloat          := StrToFloatDef(EditTotal.Text, 0);
+    FieldByName('DATA_PEDIDO').AsDateTime := DateTimePicker1.Date;
+    Post;
+  end;
+  DataModule1.FDConnection1.CommitRetaining;
+  DataModule1.FDQueryPedido.Refresh;
+  ShowMessage('Pedido salvo com sucesso!');
+  LimparCampos;
+end;
+
+procedure TForm3.ButtonExcluirClick(Sender: TObject);
+begin
+  if DataModule1.FDQueryPedido.IsEmpty then
+  begin
+    ShowMessage('Nenhum pedido selecionado.');
+    Exit;
+  end;
+  if MessageDlg('Deseja realmente excluir este pedido?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    try
+      DataModule1.FDQueryPedido.Delete;
+      DataModule1.FDConnection1.CommitRetaining;
+      DataModule1.FDQueryPedido.Refresh;
+      ShowMessage('Pedido excluído com sucesso!');
+    except
+      on E: Exception do
+        ShowMessage('Erro ao excluir pedido: ' + E.Message);
+    end;
+  end;
+end;
+
+procedure TForm3.ButtonCancelarClick(Sender: TObject);
+begin
+  if DataModule1.FDQueryPedido.State in [dsInsert, dsEdit] then
+    DataModule1.FDQueryPedido.Cancel;
+  LimparCampos;
+  ShowMessage('Operação cancelada.');
+end;
+
+procedure TForm3.DBGrid1CellClick(Column: TColumn);
+var
+  idCliente: Integer;
+begin
+  idCliente := DataModule1.FDQueryPedido.FieldByName('ID_CLIENTE').AsInteger;
+  EditIdCliente.Text := IntToStr(idCliente);
+  with DataModule1.FDQueryCliente do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM CLIENTE WHERE ID_CLIENTE = :ID';
+    ParamByName('ID').AsInteger := idCliente;
+    Open;
+  end;
+  DBGridMostrarCliente.DataSource := DataModule1.DataSourceCliente;
+end;
+
+procedure TForm3.FormShow(Sender: TObject);
+begin
+  with DataModule1.FDQueryPedido do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM PEDIDO';
+    Open;
+  end;
+end;
+
+end.
+
