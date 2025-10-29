@@ -20,9 +20,21 @@ object Form1: TForm1
     Height = 588
     Align = alClient
     TabOrder = 0
+<<<<<<< HEAD
+    ExplicitLeft = -8
+    ExplicitTop = -8
+    object Label1: TLabel
+      Left = 465
+      Top = 18
+      Width = 61
+      Height = 15
+      Caption = 'Atendente: '
+    end
+=======
     DesignSize = (
       804
       588)
+>>>>>>> b0d87e456e7b661f6be16cc4b39f023220bf99f0
     object Label2: TLabel
       Left = 532
       Top = 18

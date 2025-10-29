@@ -1,9 +1,17 @@
 object DataModule1: TDataModule1
+<<<<<<< HEAD
   Height = 490
   Width = 291
   object FDConnection1: TFDConnection
     Params.Strings = (
       'Database=C:\Users\jeova\Bancos\COFFEELOG.FDB'
+=======
+  Height = 551
+  Width = 1057
+  object FDConnection1: TFDConnection
+    Params.Strings = (
+      'Database=COFFEELOG.FDB'
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=FB')
@@ -11,6 +19,7 @@ object DataModule1: TDataModule1
     Top = 32
   end
   object FDQueryCliente: TFDQuery
+<<<<<<< HEAD
     CachedUpdates = True
     Connection = FDConnection1
     UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
@@ -18,16 +27,28 @@ object DataModule1: TDataModule1
     UpdateOptions.UpdateTableName = 'CLIENTE'
     UpdateOptions.KeyFields = 'ID_CLIENTE'
     UpdateOptions.AutoIncFields = 'ID_CLIENTE'
+=======
+    Connection = FDConnection1
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
     Left = 56
     Top = 104
   end
   object FDPhysFBDriverLink1: TFDPhysFBDriverLink
+<<<<<<< HEAD
     Left = 152
     Top = 32
   end
   object DataSourceCliente: TDataSource
     DataSet = FDQueryCliente
     Left = 152
+=======
+    Left = 192
+    Top = 24
+  end
+  object DataSourceCliente: TDataSource
+    DataSet = FDQueryCliente
+    Left = 192
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
     Top = 104
   end
   object FDQueryPedido: TFDQuery
@@ -37,7 +58,11 @@ object DataModule1: TDataModule1
   end
   object DataSourcePedido: TDataSource
     DataSet = FDQueryPedido
+<<<<<<< HEAD
     Left = 152
+=======
+    Left = 184
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
     Top = 160
   end
   object FDQueryAtendente: TFDQuery
@@ -47,7 +72,11 @@ object DataModule1: TDataModule1
   end
   object DataSourceAtendente: TDataSource
     DataSet = FDQueryAtendente
+<<<<<<< HEAD
     Left = 152
+=======
+    Left = 200
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
     Top = 216
   end
   object FDQueryCardapio: TFDQuery
@@ -57,7 +86,11 @@ object DataModule1: TDataModule1
   end
   object DataSourceCardapio: TDataSource
     DataSet = FDQueryCardapio
+<<<<<<< HEAD
     Left = 152
+=======
+    Left = 192
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
     Top = 272
   end
   object FDQueryPagamento: TFDQuery
@@ -67,7 +100,11 @@ object DataModule1: TDataModule1
   end
   object DataSourcePagamento: TDataSource
     DataSet = FDQueryPagamento
+<<<<<<< HEAD
     Left = 152
+=======
+    Left = 192
+>>>>>>> 5aa5f83709bd475004248748697b7ab20e31225f
     Top = 328
   end
 end
