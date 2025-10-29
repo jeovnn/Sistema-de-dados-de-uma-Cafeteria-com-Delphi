@@ -13,6 +13,11 @@ object DataModule1: TDataModule1
   object FDQueryCliente: TFDQuery
     CachedUpdates = True
     Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
+    UpdateOptions.AutoCommitUpdates = True
+    UpdateOptions.UpdateTableName = 'CLIENTE'
+    UpdateOptions.KeyFields = 'ID_CLIENTE'
+    UpdateOptions.AutoIncFields = 'ID_CLIENTE'
     Left = 56
     Top = 104
   end
@@ -27,6 +32,12 @@ object DataModule1: TDataModule1
   end
   object FDQueryPedido: TFDQuery
     Connection = FDConnection1
+    UpdateOptions.AssignedValues = [uvAutoCommitUpdates]
+    UpdateOptions.AutoCommitUpdates = True
+    UpdateOptions.UpdateTableName = 'PEDIDO'
+    UpdateOptions.KeyFields = 'ID_PEDIDO'
+    SQL.Strings = (
+      '')
     Left = 56
     Top = 160
   end

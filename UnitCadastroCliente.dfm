@@ -3,7 +3,7 @@ object Form2: TForm2
   Top = 0
   Caption = 'Form2'
   ClientHeight = 653
-  ClientWidth = 842
+  ClientWidth = 1056
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,10 +15,11 @@ object Form2: TForm2
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 842
+    Width = 1056
     Height = 653
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 842
     object Label1: TLabel
       Left = 40
       Top = 120
@@ -63,7 +64,7 @@ object Form2: TForm2
     object DBGrid1: TDBGrid
       Left = 40
       Top = 336
-      Width = 753
+      Width = 985
       Height = 265
       DataSource = DataModule1.DataSourceCliente
       TabOrder = 0
