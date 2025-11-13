@@ -1,0 +1,60 @@
+object Form4: TForm4
+  Left = 0
+  Top = 0
+  Caption = 'Form4'
+  ClientHeight = 441
+  ClientWidth = 624
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object RLReport1: TRLReport
+    Left = -80
+    Top = -320
+    Width = 794
+    Height = 1123
+    DataSource = DataModule1.DataSourcePagamento
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -13
+    Font.Name = 'Arial'
+    Font.Style = []
+    object RLBand1: TRLBand
+      Left = 38
+      Top = 38
+      Width = 718
+      Height = 16
+      BandType = btHeader
+    end
+    object RLDBText1: TRLDBText
+      Left = 128
+      Top = 416
+      Width = 72
+      Height = 16
+      DataField = 'ID_PEDIDO'
+      DataSource = DataModule1.DataSourcePedido
+      Text = ''
+    end
+    object RLDBText2: TRLDBText
+      Left = 128
+      Top = 488
+      Width = 94
+      Height = 16
+      DataField = 'DATA_PEDIDO'
+      DataSource = DataModule1.DataSourcePedido
+      Text = ''
+    end
+    object RLDBText3: TRLDBText
+      Left = 128
+      Top = 560
+      Width = 44
+      Height = 16
+      DataField = 'TOTAL'
+      DataSource = DataModule1.DataSourcePedido
+      Text = ''
+    end
+  end
+end
