@@ -123,28 +123,28 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitInicial.pas">
+        <DCCReference Include="..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitInicial.pas">
             <Form>Form1</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitConexao.pas">
+        <DCCReference Include="..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitConexao.pas">
             <Form>DataModule1</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroCliente.pas">
+        <DCCReference Include="..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroCliente.pas">
             <Form>Form2</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroPedido.pas">
+        <DCCReference Include="..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroPedido.pas">
             <Form>Form3</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Unit4.pas">
+        <DCCReference Include="..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitRelatorio.pas">
             <Form>Form4</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Unit2Heranca.pas">
+        <DCCReference Include="..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\Unit2Heranca.pas">
             <Form>Form5</Form>
             <FormType>dfm</FormType>
         </DCCReference>
