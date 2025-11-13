@@ -2,12 +2,12 @@ program Project;
 
 uses
   Vcl.Forms,
-  UnitInicial in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitInicial.pas' {Form1},
-  UnitConexao in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitConexao.pas' {DataModule1: TDataModule},
-  UnitCadastroCliente in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroCliente.pas' {Form2},
-  UnitCadastroPedido in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroPedido.pas' {Form3},
-  UnitRelatorio in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitRelatorio.pas' {Form4},
-  Unit2Heranca in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\Unit2Heranca.pas' {Form5};
+  UnitInicial in 'UnitInicial.pas' {Form1},
+  UnitConexao in 'UnitConexao.pas' {DataModule1: TDataModule},
+  UnitCadastroCliente in 'UnitCadastroCliente.pas' {Form2},
+  UnitCadastroPedido in 'UnitCadastroPedido.pas' {Form3},
+  UnitRelatorio in 'UnitRelatorio.pas' {Form4},
+  Unit2Heranca in 'Unit2Heranca.pas' {Form5};
 
 {$R *.res}
 

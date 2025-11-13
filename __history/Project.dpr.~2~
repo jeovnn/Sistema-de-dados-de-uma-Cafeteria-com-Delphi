@@ -2,23 +2,15 @@ program Project;
 
 uses
   Vcl.Forms,
-  UnitInicial in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitInicial.pas' {Form1},
-  UnitConexao in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitConexao.pas' {DataModule1: TDataModule},
-  UnitCadastroCliente in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroCliente.pas' {Form2},
-  UnitCadastroPedido in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitCadastroPedido.pas' {Form3},
-  UnitRelatorio in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\UnitRelatorio.pas' {Form4},
-  Unit2Heranca in '..\..\Sistema-de-dados-de-uma-Cafeteria-com-Delphi-b0d87e456e7b661f6be16cc4b39f023220bf99f0\Unit2Heranca.pas' {Form5};
+  UnitInicial in 'UnitInicial.pas' {Form1},
+  UnitConexao in 'UnitConexao.pas' {DataModule1: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  AApplication.CreateForm(TForm1, Form1);
+  Application.CreateForm(TForm1, Form1);
   Application.CreateForm(TDataModule1, DataModule1);
-  Application.CreateForm(TForm2, Form2);
-  Application.CreateForm(TForm3, Form3);
-  Application.CreateForm(TForm4, Form4);
-  Application.CreateForm(TForm5, Form5);
-  pplication.Run;
+  Application.Run;
 end.

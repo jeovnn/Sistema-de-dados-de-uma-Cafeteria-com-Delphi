@@ -1,0 +1,150 @@
+unit UnitCadastroCliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, Vcl.StdCtrls, UnitConexao, FireDAC.Comp.Client;
+
+type
+  TForm2 = class(TForm)
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
+    ButtonNovo: TButton;
+    ButtonExcluir: TButton;
+    ButtonCancelar: TButton;
+    ButtonSalvar: TButton;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    EditNome: TEdit;
+    EditTelefone: TEdit;
+    EditIdCliente: TEdit;
+    Label4: TLabel;
+    EditEmail: TEdit;
+    Label5: TLabel;
+    procedure FormShow(Sender: TObject);
+    procedure ButtonNovoClick(Sender: TObject);
+    procedure ButtonExcluirClick(Sender: TObject);
+    procedure ButtonCancelarClick(Sender: TObject);
+    procedure ButtonSalvarClick(Sender: TObject);
+  private
+    procedure LimparCampos;
+  public
+  end;
+
+var
+  Form2: TForm2;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm2.LimparCampos;
+begin
+  EditIdCliente.Clear;
+  EditNome.Clear;
+  EditTelefone.Clear;
+  EditEmail.Clear;
+end;
+
+procedure TForm2.ButtonNovoClick(Sender: TObject);
+var
+  QTemp: TFDQuery;
+  ProxID: Integer;
+begin
+  LimparCampos;
+
+  QTemp := TFDQuery.Create(nil);
+  try
+    QTemp.Connection := DataModule1.FDConnection1;
+    QTemp.SQL.Text :=
+      'SELECT NEXT VALUE FOR GEN_CLIENTE_ID AS PROXIMO FROM RDB$DATABASE';
+    QTemp.Open;
+    ProxID := QTemp.FieldByName('PROXIMO').AsInteger;
+  finally
+    QTemp.Free;
+  end;
+
+  EditIdCliente.Text := IntToStr(ProxID);
+  DataModule1.FDQueryCliente.Append;
+end;
+
+procedure TForm2.ButtonExcluirClick(Sender: TObject);
+begin
+  // Verifica se há um registro selecionado
+  if DataModule1.FDQueryCliente.IsEmpty then
+  begin
+    ShowMessage('Nenhum cliente selecionado.');
+    Exit;
+  end;
+
+  // Pede confirmação
+  if MessageDlg('Deseja realmente excluir o cliente "' +
+     DataModule1.FDQueryCliente.FieldByName('NOME').AsString + '"?',
+     mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+  begin
+    try
+      // Exclui o registro atual
+      DataModule1.FDQueryCliente.Delete;
+      DataModule1.FDQueryCliente.ApplyUpdates(0);
+      DataModule1.FDConnection1.CommitRetaining;
+      DataModule1.FDQueryCliente.Refresh;
+
+      ShowMessage('Cliente excluído com sucesso!');
+      LimparCampos;
+    except
+      on E: Exception do
+        ShowMessage('Erro ao excluir cliente: ' + E.Message);
+    end;
+  end;
+end;
+
+procedure TForm2.ButtonCancelarClick(Sender: TObject);
+begin
+  DataModule1.FDQueryCliente.Cancel;
+  LimparCampos;
+end;
+
+procedure TForm2.ButtonSalvarClick(Sender: TObject);
+begin
+  if Trim(EditNome.Text) = '' then
+  begin
+    ShowMessage('Informe o nome do cliente.');
+    Exit;
+  end;
+
+  with DataModule1.FDQueryCliente do
+  begin
+    if not (State in [dsInsert, dsEdit]) then
+      Append;
+
+    FieldByName('ID_CLIENTE').AsInteger := StrToInt(EditIdCliente.Text);
+    FieldByName('NOME').AsString        := EditNome.Text;
+    FieldByName('TELEFONE').AsString    := EditTelefone.Text;
+    FieldByName('EMAIL').AsString       := EditEmail.Text;
+
+    Post;
+    ApplyUpdates(0);
+  end;
+
+  DataModule1.FDConnection1.CommitRetaining;
+  DataModule1.FDQueryCliente.Refresh;
+
+  ShowMessage('Cliente salvo com sucesso!');
+  LimparCampos;
+end;
+
+procedure TForm2.FormShow(Sender: TObject);
+begin
+  with DataModule1.FDQueryCliente do
+  begin
+    Close;
+    SQL.Text := 'SELECT * FROM CLIENTE';
+    Open;
+  end;
+end;
+
+end.
