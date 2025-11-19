@@ -47,7 +47,7 @@ implementation
 
 procedure TForm1.Atendente1Click(Sender: TObject);
 begin
-Form5.Show;
+Form1.Show;
 end;
 
 procedure TForm1.ButtonRelatorioClick(Sender: TObject);

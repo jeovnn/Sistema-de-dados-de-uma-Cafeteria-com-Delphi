@@ -1,5 +1,5 @@
-inherited Form5: TForm5
-  Caption = 'Form5'
+inherited TelaCadastroAtendente: TTelaCadastroAtendente
+  Caption = 'TelaCadastroAtendente'
   StyleElements = [seFont, seClient, seBorder]
   TextHeight = 15
   inherited Panel1: TPanel

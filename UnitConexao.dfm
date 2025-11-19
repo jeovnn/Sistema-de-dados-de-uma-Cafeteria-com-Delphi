@@ -3,11 +3,12 @@ object DataModule1: TDataModule1
   Width = 291
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=C:\Users\jeova\Bancos\COFFEELOG.FDB'
+      
+        'Database=C:\Users\emili\OneDrive\'#193'rea de Trabalho\Linguagem 2\Si' +
+        'stema-de-dados-de-uma-Cafeteria-com-Delphi\COFFEELOG.FDB'
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=FB')
-    Connected = True
     Left = 56
     Top = 32
   end
