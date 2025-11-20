@@ -145,7 +145,7 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Unit2Heranca.pas">
-            <Form>Form5</Form>
+            <Form>TelaCadastroAtendente</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

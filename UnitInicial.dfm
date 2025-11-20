@@ -23,11 +23,44 @@ object Form1: TForm1
     DesignSize = (
       804
       588)
+    object LabelLupa: TLabel
+      Left = 30
+      Top = 194
+      Width = 22
+      Height = 21
+      Caption = #55357#56590
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
     object Label2: TLabel
       Left = 532
       Top = 18
       Width = 3
       Height = 15
+    end
+    object Label1: TLabel
+      Left = 30
+      Top = 178
+      Width = 77
+      Height = 15
+      Caption = 'Pesquisar Item'
+    end
+    object Label3: TLabel
+      Left = 258
+      Top = 193
+      Width = 22
+      Height = 21
+      Caption = #55357#56523
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
     end
     object DBGridCardapio: TDBGrid
       Left = 16
@@ -1000,7 +1033,7 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      OnClick = ButtonSelecionarClick
+      OnClick = ButtonoSelecionarClick
     end
     object DBGridAtendentes: TDBGrid
       Left = 16
@@ -1021,21 +1054,29 @@ object Form1: TForm1
     object ButtonSelecionar: TButton
       Left = 16
       Top = 145
-      Width = 81
+      Width = 75
       Height = 25
       Caption = 'Selecionar'
       TabOrder = 2
-      Visible = False
+      OnClick = ButtonSelecionarClick
     end
   end
   object ButtonRelatorio: TButton
-    Left = 16
-    Top = 184
+    Left = 284
+    Top = 193
     Width = 113
     Height = 25
-    Caption = 'ButtonRelatorio'
+    Caption = 'Relatorio'
     TabOrder = 2
     OnClick = ButtonRelatorioClick
+  end
+  object EditPesquisa: TEdit
+    Left = 56
+    Top = 195
+    Width = 177
+    Height = 23
+    TabOrder = 3
+    OnChange = EditPesquisaChange
   end
   object MainMenu1: TMainMenu
     Left = 32

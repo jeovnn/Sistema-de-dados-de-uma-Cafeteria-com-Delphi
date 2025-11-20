@@ -19,19 +19,25 @@ type
     ButtonAlterarAtendente: TButton;
     DBGridAtendentes: TDBGrid;
     LabelNomeAtendente: TLabel;
-    Label2: TLabel;
-    ButtonSelecionar: TButton;
     GroupBox1: TGroupBox;
     Image1: TImage;
     ButtonRelatorio: TButton;
     Atendente1: TMenuItem;
-    procedure ButtonSelecionarClick(Sender: TObject);
+    ButtonSelecionar: TButton;
+    EditPesquisa: TEdit;
+    LabelLupa: TLabel;
+    Label2: TLabel;
+    Label1: TLabel;
+    Label3: TLabel;
+    procedure ButtonoSelecionarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGridAtendentesCellClick(Column: TColumn);
     procedure Cadastrar2Click(Sender: TObject);
     procedure Cliente1Click(Sender: TObject);
     procedure ButtonRelatorioClick(Sender: TObject);
     procedure Atendente1Click(Sender: TObject);
+    procedure ButtonSelecionarClick(Sender: TObject);
+    procedure EditPesquisaChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -47,7 +53,7 @@ implementation
 
 procedure TForm1.Atendente1Click(Sender: TObject);
 begin
-Form5.Show;
+TelaCadastroAtendente.Show;
 end;
 
 procedure TForm1.ButtonRelatorioClick(Sender: TObject);
@@ -75,7 +81,14 @@ begin
   end;
 end;
 
-Procedure TForm1.ButtonSelecionarClick(Sender: TObject);
+procedure TForm1.ButtonSelecionarClick(Sender: TObject);
+begin
+dbgridatendentes.visible:= false;
+buttonselecionar.visible:= false;
+image1.visible:= true;
+end;
+
+Procedure TForm1.ButtonoSelecionarClick(Sender: TObject);
 begin
 dbgridatendentes.visible:= true;
 buttonselecionar.visible:= true;
@@ -99,8 +112,19 @@ begin
 end;
 
 
+procedure TForm1.EditPesquisaChange(Sender: TObject);
+begin
+  DataModule1.FDQueryCardapio.Close;
+  DataModule1.FDQueryCardapio.SQL.Text :=
+    'SELECT * FROM CARDAPIO WHERE UPPER(NOME) LIKE UPPER(:PESQ)';
+  DataModule1.FDQueryCardapio.ParamByName('PESQ').AsString :=
+    '%' + Trim(EditPesquisa.Text) + '%';
+  DataModule1.FDQueryCardapio.Open;
+end;
+
 procedure TForm1.FormShow(Sender: TObject);
 begin
+ButtonSelecionar.visible:= false;
   with DataModule1.FDQuerycardapio do
   begin
     Close;

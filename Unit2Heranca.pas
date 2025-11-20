@@ -4,13 +4,26 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UnitCadastroCliente, Data.DB,
-  Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids, Vcl.ExtCtrls, unitconexao,
-  FireDAC.Comp.Client;
+  System.Classes, Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  UnitCadastroCliente, Data.DB, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ExtCtrls, UnitConexao, FireDAC.Comp.Client;
 
 type
-  TForm5 = class(TForm2)
+
+  TBaseCadastro = class
+  public
+    procedure ExibirMensagem; virtual;
+    procedure MetodoObrigatorio; virtual; abstract;
+    procedure CalcularTotal(A: Integer); overload;
+    procedure CalcularTotal(A, B: Integer); overload;
+  end;
+
+  TCadastroAtendente = class(TBaseCadastro)
+  public
+    procedure MetodoObrigatorio; override;
+  end;
+
+  TTelaCadastroAtendente = class(TForm2)
     procedure FormShow(Sender: TObject);
     procedure ButtonNovoClick(Sender: TObject);
     procedure ButtonSalvarClick(Sender: TObject);
@@ -18,26 +31,44 @@ type
   private
     procedure LimparCamposAtendente;
   public
+    Cadastro: TCadastroAtendente;
   end;
 
 var
-  Form5: TForm5;
+  TelaCadastroAtendente: TTelaCadastroAtendente;
 
 implementation
 
 {$R *.dfm}
 
-procedure TForm5.LimparCamposAtendente;
+
+procedure TBaseCadastro.ExibirMensagem;
 begin
-  EditIdCliente.Clear;
-  EditNome.Clear;
-  EditTelefone.Clear;
-  EditEmail.Clear;
+  ShowMessage('Cadastro iniciado. Preencha os dados do atendente.');
 end;
 
-procedure TForm5.FormShow(Sender: TObject);
+procedure TBaseCadastro.CalcularTotal(A: Integer);
+begin
+  ShowMessage('Valor informado: ' + A.ToString);
+end;
+
+procedure TBaseCadastro.CalcularTotal(A, B: Integer);
+begin
+  ShowMessage('Resultado da soma: ' + (A + B).ToString);
+end;
+
+
+procedure TCadastroAtendente.MetodoObrigatorio;
+begin
+  ShowMessage('Recurso obrigatório executado corretamente.');
+end;
+
+
+procedure TTelaCadastroAtendente.FormShow(Sender: TObject);
 begin
   inherited;
+  Cadastro := TCadastroAtendente.Create;
+
   with DataModule1.FDQueryAtendente do
   begin
     Close;
@@ -48,12 +79,25 @@ begin
   DBGridClientes.DataSource := DataModule1.DataSourceAtendente;
 end;
 
-procedure TForm5.ButtonNovoClick(Sender: TObject);
+procedure TTelaCadastroAtendente.LimparCamposAtendente;
+begin
+  EditIdCliente.Clear;
+  EditNome.Clear;
+  EditTelefone.Clear;
+  EditEmail.Clear;
+end;
+
+procedure TTelaCadastroAtendente.ButtonNovoClick(Sender: TObject);
 var
   QTemp: TFDQuery;
   ProxID: Integer;
 begin
   LimparCamposAtendente;
+
+  Cadastro.ExibirMensagem;
+  Cadastro.MetodoObrigatorio;
+  Cadastro.CalcularTotal(10);
+  Cadastro.CalcularTotal(10, 20);
 
   QTemp := TFDQuery.Create(nil);
   try
@@ -70,11 +114,11 @@ begin
   DataModule1.FDQueryAtendente.Append;
 end;
 
-procedure TForm5.ButtonSalvarClick(Sender: TObject);
+procedure TTelaCadastroAtendente.ButtonSalvarClick(Sender: TObject);
 begin
   if Trim(EditNome.Text) = '' then
   begin
-    ShowMessage('Informe o nome do atendente.');
+    ShowMessage('O campo Nome é obrigatório.');
     Exit;
   end;
 
@@ -92,46 +136,37 @@ begin
     ApplyUpdates(0);
     DataModule1.FDConnection1.CommitRetaining;
 
-    if not(DataModule1.FDQueryAtendente.State in [dsEdit, dsInsert]) then
-    begin
-      DataModule1.FDQueryAtendente.Close;
-      DataModule1.FDQueryAtendente.Open;
-    end;;
+    Close;
+    Open;
 
-    ShowMessage('Atendente salvo com sucesso!');
+    ShowMessage('Cadastro salvo com sucesso.');
     LimparCamposAtendente;
   end;
 end;
 
-procedure TForm5.ButtonExcluirClick(Sender: TObject);
+procedure TTelaCadastroAtendente.ButtonExcluirClick(Sender: TObject);
+begin
+  if DataModule1.FDQueryAtendente.IsEmpty then
   begin
-    if DataModule1.FDQueryAtendente.IsEmpty then
-    begin
-      ShowMessage('Nenhum atendente selecionado.');
-      Exit;
-    end;
-
-    try
-      // Exclui o registro
-      DataModule1.FDQueryAtendente.Delete;
-
-      // Aplica a exclusão diretamente (sem cache)
-      DataModule1.FDQueryAtendente.ApplyUpdates(0);
-      DataModule1.FDQueryAtendente.CommitUpdates; // 🔹 limpa cache interno
-
-      // Confirma a transação
-      DataModule1.FDConnection1.CommitRetaining;
-
-      // Atualiza visualmente (sem usar Refresh)
-      DataModule1.FDQueryAtendente.Close;
-      DataModule1.FDQueryAtendente.Open;
-
-      ShowMessage('Atendente excluído com sucesso!');
-      LimparCamposAtendente;
-    except
-      on E: Exception do
-        ShowMessage('Erro ao excluir atendente: ' + E.Message);
-    end;
+    ShowMessage('Nenhum atendente selecionado.');
+    Exit;
   end;
 
-end.x '
+  try
+    DataModule1.FDQueryAtendente.Delete;
+    DataModule1.FDQueryAtendente.ApplyUpdates(0);
+    DataModule1.FDConnection1.CommitRetaining;
+
+    DataModule1.FDQueryAtendente.Close;
+    DataModule1.FDQueryAtendente.Open;
+
+    ShowMessage('Registro excluído com sucesso.');
+    LimparCamposAtendente;
+  except
+    on E: Exception do
+      ShowMessage('Erro ao excluir o registro: ' + E.Message);
+  end;
+end;
+
+end.
+

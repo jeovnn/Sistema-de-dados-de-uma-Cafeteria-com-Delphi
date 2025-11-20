@@ -7,7 +7,6 @@ object DataModule1: TDataModule1
       'User_Name=sysdba'
       'Password=masterkey'
       'DriverID=FB')
-    Connected = True
     Left = 56
     Top = 32
   end
