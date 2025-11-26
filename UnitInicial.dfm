@@ -36,20 +36,14 @@ object Form1: TForm1
       Font.Style = []
       ParentFont = False
     end
-    object Label2: TLabel
-      Left = 532
-      Top = 18
-      Width = 3
-      Height = 15
-    end
-    object Label1: TLabel
+    object LabelPesquisar: TLabel
       Left = 30
       Top = 178
       Width = 77
       Height = 15
       Caption = 'Pesquisar Item'
     end
-    object Label3: TLabel
+    object LabelEmogiRelatorio: TLabel
       Left = 258
       Top = 193
       Width = 22

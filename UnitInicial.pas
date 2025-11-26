@@ -26,9 +26,8 @@ type
     ButtonSelecionar: TButton;
     EditPesquisa: TEdit;
     LabelLupa: TLabel;
-    Label2: TLabel;
-    Label1: TLabel;
-    Label3: TLabel;
+    LabelPesquisar: TLabel;
+    LabelEmogiRelatorio: TLabel;
     procedure ButtonoSelecionarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure DBGridAtendentesCellClick(Column: TColumn);

@@ -28,6 +28,7 @@ type
     procedure ButtonNovoClick(Sender: TObject);
     procedure ButtonSalvarClick(Sender: TObject);
     procedure ButtonExcluirClick(Sender: TObject);
+    procedure ButtonRelatorioClick(Sender: TObject);
   private
     procedure LimparCamposAtendente;
   public
@@ -40,6 +41,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses UnitRelatorio;
 
 
 procedure TBaseCadastro.ExibirMensagem;
@@ -68,6 +71,7 @@ procedure TTelaCadastroAtendente.FormShow(Sender: TObject);
 begin
   inherited;
   Cadastro := TCadastroAtendente.Create;
+  LabelTitulo.Caption := 'Cadastro de Atendente';
 
   with DataModule1.FDQueryAtendente do
   begin
@@ -112,6 +116,32 @@ begin
 
   EditIdCliente.Text := IntToStr(ProxID);
   DataModule1.FDQueryAtendente.Append;
+end;
+
+procedure TTelaCadastroAtendente.ButtonRelatorioClick(Sender: TObject);
+begin
+  DataModule1.FDQueryAtendente.Close;
+  DataModule1.FDQueryAtendente.SQL.Text := 'SELECT * FROM ATENDENTE';
+  DataModule1.FDQueryAtendente.Open;
+
+  Form4 := TForm4.Create(nil);
+  Form4.RLReport1.DataSource  := DataModule1.DataSourceAtendente;
+  try
+    Form4.RLDBText1.DataSource  := DataModule1.DataSourceAtendente;
+    Form4.RLDBText1.DataField   := 'ID_ATENDENTE';
+
+    Form4.RLDBText2.DataSource  := DataModule1.DataSourceAtendente;
+    form4.Label2.Caption:= 'Nome';
+    Form4.RLDBText2.DataField   := 'NOME';
+
+    Form4.RLDBText3.DataSource  := DataModule1.DataSourceAtendente;
+    form4.Label3.Caption:= 'Email';
+    Form4.RLDBText3.DataField   := 'EMAIL';
+
+    Form4.RLReport1.Preview;
+  finally
+    Form4.Free;
+  end;
 end;
 
 procedure TTelaCadastroAtendente.ButtonSalvarClick(Sender: TObject);

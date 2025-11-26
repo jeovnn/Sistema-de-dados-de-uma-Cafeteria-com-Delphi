@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ExtCtrls, Vcl.StdCtrls, UnitConexao, FireDAC.Comp.Client;
+  Vcl.ExtCtrls, Vcl.StdCtrls, UnitConexao, FireDAC.Comp.Client,unitrelatorio;
 
 type
   TForm2 = class(TForm)
@@ -16,20 +16,22 @@ type
     ButtonExcluir: TButton;
     ButtonCancelar: TButton;
     ButtonSalvar: TButton;
-    Label1: TLabel;
-    Label2: TLabel;
-    Label3: TLabel;
+    LabelName: TLabel;
+    LabelTitulo: TLabel;
+    LabelTelefone: TLabel;
     EditNome: TEdit;
     EditTelefone: TEdit;
     EditIdCliente: TEdit;
-    Label4: TLabel;
+    LabelID: TLabel;
     EditEmail: TEdit;
-    Label5: TLabel;
+    LabelEmail: TLabel;
+    ButtonRelatorio: TButton;
     procedure FormShow(Sender: TObject);
     procedure ButtonNovoClick(Sender: TObject);
     procedure ButtonExcluirClick(Sender: TObject);
     procedure ButtonCancelarClick(Sender: TObject);
     procedure ButtonSalvarClick(Sender: TObject);
+    procedure ButtonRelatorioClick(Sender: TObject);
   private
     procedure LimparCampos;
   public
@@ -70,6 +72,33 @@ begin
 
   EditIdCliente.Text := IntToStr(ProxID);
   DataModule1.FDQueryCliente.Append;
+end;
+
+procedure TForm2.ButtonRelatorioClick(Sender: TObject);
+begin
+  DataModule1.FDQueryCliente.Close;
+  DataModule1.FDQueryCliente.SQL.Text := 'SELECT * FROM CLIENTE';
+  DataModule1.FDQueryCliente.Open;
+
+  Form4 := TForm4.Create(nil);
+  Form4.RLReport1.DataSource  := DataModule1.DataSourceCliente;
+
+  try
+    Form4.RLDBText1.DataSource  := DataModule1.DataSourceCliente;
+    Form4.RLDBText1.DataField   := 'ID_CLIENTE';
+
+    Form4.RLDBText2.DataSource  := DataModule1.DataSourceCliente;
+    form4.Label2.Caption:= 'Nome';
+    Form4.RLDBText2.DataField   := 'NOME';
+
+    Form4.RLDBText3.DataSource  := DataModule1.DataSourceCliente;
+    form4.Label3.Caption:= 'Email';
+    Form4.RLDBText3.DataField   := 'EMAIL';
+
+    Form4.RLReport1.Preview;
+  finally
+    Form4.Free;
+  end;
 end;
 
 procedure TForm2.ButtonExcluirClick(Sender: TObject);

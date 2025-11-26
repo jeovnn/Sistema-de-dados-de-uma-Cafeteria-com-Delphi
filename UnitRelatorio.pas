@@ -4,16 +4,19 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport,unitconexao;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, RLReport,unitconexao, Vcl.StdCtrls;
 
 type
   TForm4 = class(TForm)
     RLReport1: TRLReport;
+    RLBand1: TRLBand;
+    RLBand2: TRLBand;
     RLDBText1: TRLDBText;
     RLDBText2: TRLDBText;
     RLDBText3: TRLDBText;
-    RLBand2: TRLBand;
-    RLBand1: TRLBand;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
   private
     { Private declarations }
   public

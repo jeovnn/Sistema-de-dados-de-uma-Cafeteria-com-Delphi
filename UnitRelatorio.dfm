@@ -22,45 +22,66 @@ object Form4: TForm4
     Font.Height = -13
     Font.Name = 'Arial'
     Font.Style = []
-    object RLBand2: TRLBand
+    object RLBand1: TRLBand
       Left = 38
       Top = 38
       Width = 718
-      Height = 370
+      Height = 75
       BandType = btHeader
     end
-    object RLBand1: TRLBand
+    object RLBand2: TRLBand
       Left = 38
-      Top = 408
+      Top = 113
       Width = 718
-      Height = 49
-    end
-    object RLDBText1: TRLDBText
-      Left = 41
-      Top = 41
-      Width = 53
-      Height = 16
-      DataField = 'ID_ITEM'
-      DataSource = DataModule1.DataSourceCardapio
-      Text = ''
-    end
-    object RLDBText2: TRLDBText
-      Left = 328
-      Top = 41
-      Width = 43
-      Height = 16
-      DataField = 'NOME'
-      DataSource = DataModule1.DataSourceCardapio
-      Text = ''
-    end
-    object RLDBText3: TRLDBText
-      Left = 600
-      Top = 41
-      Width = 50
-      Height = 16
-      DataField = 'PRECO'
-      DataSource = DataModule1.DataSourceCardapio
-      Text = ''
+      Height = 112
+      object Label1: TLabel
+        Left = 41
+        Top = 35
+        Width = 10
+        Height = 16
+        Caption = 'Id'
+      end
+      object Label2: TLabel
+        Left = 328
+        Top = 35
+        Width = 25
+        Height = 16
+        Caption = 'Item'
+      end
+      object Label3: TLabel
+        Left = 600
+        Top = 35
+        Width = 34
+        Height = 16
+        Caption = 'Pre'#231'o'
+      end
+      object RLDBText1: TRLDBText
+        Left = 41
+        Top = 65
+        Width = 53
+        Height = 16
+        DataField = 'ID_ITEM'
+        DataSource = DataModule1.DataSourceCardapio
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 328
+        Top = 65
+        Width = 43
+        Height = 16
+        DataField = 'NOME'
+        DataSource = DataModule1.DataSourceCardapio
+        Text = ''
+      end
+      object RLDBText3: TRLDBText
+        Left = 600
+        Top = 65
+        Width = 50
+        Height = 16
+        DataField = 'PRECO'
+        DataSource = DataModule1.DataSourceCardapio
+        Text = ''
+      end
     end
   end
 end

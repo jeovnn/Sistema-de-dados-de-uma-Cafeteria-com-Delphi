@@ -4,25 +4,19 @@ inherited TelaCadastroAtendente: TTelaCadastroAtendente
   TextHeight = 15
   inherited Panel1: TPanel
     StyleElements = [seFont, seClient, seBorder]
-    inherited Label1: TLabel
+    inherited LabelName: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
-    inherited Label2: TLabel
-      Width = 177
-      Caption = 'Cadastro de Atendente'
-      StyleElements = [seFont, seClient, seBorder]
-      ExplicitWidth = 177
-    end
-    inherited Label3: TLabel
+    inherited LabelTitulo: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
-    inherited Label4: TLabel
-      Width = 68
-      Caption = 'Id Atendente'
+    inherited LabelTelefone: TLabel
       StyleElements = [seFont, seClient, seBorder]
-      ExplicitWidth = 68
     end
-    inherited Label5: TLabel
+    inherited LabelID: TLabel
+      StyleElements = [seFont, seClient, seBorder]
+    end
+    inherited LabelEmail: TLabel
       StyleElements = [seFont, seClient, seBorder]
     end
     inherited DBGridClientes: TDBGrid

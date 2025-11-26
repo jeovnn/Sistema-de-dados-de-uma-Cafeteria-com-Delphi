@@ -19,14 +19,14 @@ object Form2: TForm2
     Height = 653
     Align = alClient
     TabOrder = 0
-    object Label1: TLabel
+    object LabelName: TLabel
       Left = 40
       Top = 120
       Width = 33
       Height = 15
       Caption = 'Nome'
     end
-    object Label2: TLabel
+    object LabelTitulo: TLabel
       Left = 40
       Top = 24
       Width = 150
@@ -39,21 +39,21 @@ object Form2: TForm2
       Font.Style = []
       ParentFont = False
     end
-    object Label3: TLabel
+    object LabelTelefone: TLabel
       Left = 41
       Top = 170
       Width = 45
       Height = 15
       Caption = 'Telefone'
     end
-    object Label4: TLabel
+    object LabelID: TLabel
       Left = 40
       Top = 70
       Width = 50
       Height = 15
       Caption = 'Id Cliente'
     end
-    object Label5: TLabel
+    object LabelEmail: TLabel
       Left = 41
       Top = 226
       Width = 29
@@ -136,6 +136,15 @@ object Form2: TForm2
       Width = 241
       Height = 23
       TabOrder = 8
+    end
+    object ButtonRelatorio: TButton
+      Left = 888
+      Top = 288
+      Width = 137
+      Height = 25
+      Caption = 'Gerar Relatorio'
+      TabOrder = 9
+      OnClick = ButtonRelatorioClick
     end
   end
 end
